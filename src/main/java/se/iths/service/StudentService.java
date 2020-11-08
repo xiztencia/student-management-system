@@ -17,18 +17,18 @@ public class StudentService {
         return student;
     }
 
-    public Student updateTodo(Student student) {
+    public Student updateStudent(Student student) {
         entityManager.merge(student);
         return student;
     }
 
-    public void deleteStudent(Long id) {
-        Student deleteThisStudent = entityManager.find(Student.class, id);
+    public void deleteStudent(String lastname) {
+        Student deleteThisStudent = entityManager.find(Student.class, lastname);
         entityManager.remove(deleteThisStudent);
     }
 
-    public Student findStudentById(Long id) {
-        return entityManager.find(Student.class, id);
+    public Student findStudentByLastname(String lastname) {
+        return entityManager.find(Student.class, lastname);
     }
 
     public List<Student> getAllStudents() {

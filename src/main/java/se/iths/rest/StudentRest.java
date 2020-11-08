@@ -18,28 +18,28 @@ public class StudentRest {
     @Inject
     StudentService studentService;
 
-    @Path("new")
+    @Path("create")
     @POST
     public Response createStudent(Student student) {
-        StudentService.createStudent(student);
+        studentService.createStudent(student);
         return Response.ok(student).build();
     }
 
     @Path("update")
     @PUT
-    public Response updateTodo(Student student) {
-        StudentService.updateTodo(student);
+    public Response updateStudent(Student student) {
+        studentService.updateStudent(student);
         return Response.ok(student).build();
     }
 
-    @Path("{id}")
+    @Path("{lastname}")
     @GET
-    public Response getStudent(@PathParam("id") long id){
-        Student foundStudent = StudentService.findStudentById(id);
+    public Response getStudent(@PathParam("lastname") String lastname){
+        Student foundStudent = studentService.findStudentByLastname(lastname);
         if(foundStudent != null){
             return Response.ok(foundStudent).build();
         }else{
-            throw new StudentNotFoundException("Student with ID " + id + " not found.");
+            throw new StudentNotFoundException("Student with lastname " + lastname + " not found.");
         }
     }
 
