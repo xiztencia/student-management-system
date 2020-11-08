@@ -1,6 +1,8 @@
 package se.iths.service;
 
 import se.iths.entity.Student;
+import se.iths.rest.StudentNotFoundException;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,16 +25,25 @@ public class StudentService {
     }
 
     public void deleteStudent(String lastname) {
-        Student deleteThisStudent = entityManager.find(Student.class, lastname);
+        Student deleteThisStudent = entityManager.createQuery("SELECT s from Student s WHERE s.lastname LIKE : lastname", Student.class)
+                .setParameter("lastname", lastname)
+                .getSingleResult();
         entityManager.remove(deleteThisStudent);
     }
 
     public Student findStudentByLastname(String lastname) {
-        return entityManager.find(Student.class, lastname);
+        if(lastname != null){
+        return entityManager.createQuery("SELECT s from Student s WHERE s.lastname LIKE : lastname", Student.class)
+                .setParameter("lastname", lastname)
+                .getSingleResult();
+        }else{
+            throw new StudentNotFoundException("Student with lastname " + lastname + " not found.");
+        }
     }
 
     public List<Student> getAllStudents() {
-        return entityManager.createQuery("SELECT s from Student s", Student.class).getResultList();
+        return entityManager.createQuery("SELECT s from Student s", Student.class)
+                .getResultList();
     }
 
 }

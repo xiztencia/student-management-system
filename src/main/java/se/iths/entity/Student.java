@@ -2,10 +2,11 @@ package se.iths.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Student {
-    public Student(@NotEmpty String lastname, @NotEmpty String firstName, @NotEmpty String email, String phoneNumber){
+    public Student(@NotEmpty(message = "Required") String lastname, @NotEmpty(message = "Required") String firstName, @NotEmpty(message = "Required")@Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com") String email, @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "0700 000000") String phoneNumber){
         this.lastname = lastname;
         this.firstName = firstName;
         this.email = email;
@@ -16,13 +17,15 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Required")
     private String firstName;
-    @NotEmpty
+    @NotEmpty(message = "Required")
     private String lastname;
-    @NotEmpty
+    @NotEmpty(message = "Required")
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com")
     private String email;
 
+    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "0700 000000")
     private String phoneNumber;
 
     public Student(){

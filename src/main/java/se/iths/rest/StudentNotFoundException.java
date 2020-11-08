@@ -6,8 +6,8 @@ import javax.ws.rs.core.Response;
 
 public class StudentNotFoundException extends WebApplicationException {
 
-    public StudentNotFoundException(String message){
+    public StudentNotFoundException(String lastname){
         super(Response.status(Response.Status.NOT_FOUND)
-        .entity(message).type(MediaType.TEXT_PLAIN).build());
+        .entity("This name ["+lastname+"] does not exist!").type(MediaType.TEXT_PLAIN).build());
     }
 }
