@@ -6,8 +6,8 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 public class Student {
-    public Student(@NotEmpty(message = "Required") String lastname, @NotEmpty(message = "Required") String firstName, @NotEmpty(message = "Required")@Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com") String email, @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "0700 000000") String phoneNumber){
-        this.lastname = lastname;
+    public Student(@NotEmpty(message = "Required") String lastName, @NotEmpty(message = "Required") String firstName, @NotEmpty(message = "Required")@Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com") String email, @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "0700 000000") String phoneNumber){
+        this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -20,7 +20,7 @@ public class Student {
     @NotEmpty(message = "Required")
     private String firstName;
     @NotEmpty(message = "Required")
-    private String lastname;
+    private String lastName;
     @NotEmpty(message = "Required")
     @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com")
     private String email;
@@ -49,11 +49,11 @@ public class Student {
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastname(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

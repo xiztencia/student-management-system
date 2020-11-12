@@ -32,26 +32,26 @@ public class StudentRest {
         return Response.ok(student).build();
     }
 
-    @Path("{lastname}")
+    @Path("{lastName}")
     @GET
-    public Response getStudent(@PathParam("lastname") String lastname){
-        Student foundStudent = studentService.findStudentByLastname(lastname);
+    public Response getStudent(@PathParam("lastName") String lastName){
+        Student foundStudent = studentService.findStudentByLastname(lastName);
         if(foundStudent != null){
             return Response.ok(foundStudent).build();
         }else{
-            throw new StudentNotFoundException(lastname);
+            throw new StudentNotFoundException(lastName);
         }
     }
 
-    @Path("{lastname}")
+    @Path("{lastName}")
     @DELETE
-    public Response deleteStudent(@PathParam("lastname") String lastname){
-        Student foundStudent = studentService.findStudentByLastname(lastname);
+    public Response deleteStudent(@PathParam("lastName") String lastName){
+        Student foundStudent = studentService.findStudentByLastname(lastName);
         if(foundStudent != null){
-            studentService.deleteStudent(lastname);
-            return Response.ok().entity("Student with lastname " + lastname + " was successfully deleted.").build();
+            studentService.deleteStudent(lastName);
+            return Response.ok().entity("Student with lastName " + lastName + " was successfully deleted.").build();
         }else{
-            throw new StudentNotFoundException(lastname);
+            throw new StudentNotFoundException(lastName);
         }
     }
 

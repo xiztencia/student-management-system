@@ -5,6 +5,7 @@ import se.iths.rest.StudentNotFoundException;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -24,21 +25,23 @@ public class StudentService {
         return student;
     }
 
-    public void deleteStudent(String lastname) {
-        Student deleteThisStudent = entityManager.createQuery("SELECT s from Student s WHERE s.lastname LIKE : lastname", Student.class)
-                .setParameter("lastname", lastname)
+    public void deleteStudent(String lastName) {
+        Student deleteThisStudent = entityManager.createQuery("SELECT s from Student s WHERE s.lastName LIKE : lastName", Student.class)
+                .setParameter("lastName", lastName)
                 .getSingleResult();
         entityManager.remove(deleteThisStudent);
     }
 
-    public Student findStudentByLastname(String lastname) {
-        if(lastname != null){
-        return entityManager.createQuery("SELECT s from Student s WHERE s.lastname LIKE : lastname", Student.class)
-                .setParameter("lastname", lastname)
-                .getSingleResult();
-        }else{
-            throw new StudentNotFoundException("Student with lastname " + lastname + " not found.");
-        }
+    public Student findStudentByLastname(String lastName) {
+        try{
+            return entityManager.createQuery(
+                    "SELECT s from Student s WHERE s.lastName LIKE :lastName", Student.class)
+                        .setParameter("lastName", lastName)
+                        .setMaxResults(1)
+                        .getSingleResult();
+            }catch(NoResultException e){
+            return null;
+           }
     }
 
     public List<Student> getAllStudents() {
