@@ -25,3 +25,13 @@ We chose to report our repos on our own as they have slight differences. I skipp
 Handling of NOT_FOUND exception is made by own created StudentNotFoundException class and 
 handling of more then one of the same lastname is limited by ".setMaxResults(1)" function in findStudentByLastName method.
 
+End points for the app:
+
+
+The structure of the JSON data:
+{
+	"firstName": "Elena",
+	"lastname": "Iths",
+	"email": "elena@iths.se",
+	"phoneNumber": "0700 000007"
+}
