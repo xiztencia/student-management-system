@@ -38,6 +38,7 @@ DELETE  /se.iths/api/v1/student/{lastName}
 GET     /se.iths/api/v1/student/{lastName}
 
 
+
 The structure of the JSON data:
 
 {
