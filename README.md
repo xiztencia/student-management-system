@@ -27,11 +27,27 @@ handling of more then one of the same lastname is limited by ".setMaxResults(1)"
 
 End points for the app:
 
+POST    /se.iths/api/v1/student/create
+
+GET     /se.iths/api/v1/student/getall
+
+PUT     /se.iths/api/v1/student/update
+
+DELETE  /se.iths/api/v1/student/{lastName}
+
+GET     /se.iths/api/v1/student/{lastName}
+
 
 The structure of the JSON data:
+
 {
+
 	"firstName": "Elena",
+	
 	"lastname": "Iths",
+	
 	"email": "elena@iths.se",
+	
 	"phoneNumber": "0700 000007"
+	
 }
