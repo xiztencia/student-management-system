@@ -33,6 +33,14 @@ public class Student {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
+    public void addSubject(Subject subject){
+        subjects.add(subject);
+        subject.getStudents().add(this);
+    }
+    public void removeSubject(Subject subject){
+        subjects.remove(subject);
+        subject.getStudents().remove(this);
+    }
     public Student(){
 
     }
