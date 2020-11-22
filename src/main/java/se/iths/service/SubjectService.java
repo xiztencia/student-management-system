@@ -28,6 +28,10 @@ public class SubjectService {
         return entityManager.find(Subject.class,subjectName);
     }
 
+    public Subject findSubjectById(Long id){
+        return entityManager.find(Subject.class, id);
+    }
+
     public void deleteSubject(String subjectName) {
         Subject deleteThisSubject = entityManager.find(Subject.class, subjectName);
         entityManager.remove(deleteThisSubject);
@@ -35,5 +39,10 @@ public class SubjectService {
 
     public List<Subject> getAllSubjects() {
         return entityManager.createQuery("SELECT su FROM Subject su", Subject.class).getResultList();
+    }
+
+    public void deleteSubjectById(Long id) {
+        Subject deleteThisItem = entityManager.find(Subject.class, id);
+        entityManager.remove(deleteThisItem);
     }
 }

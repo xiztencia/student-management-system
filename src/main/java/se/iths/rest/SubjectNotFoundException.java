@@ -10,4 +10,9 @@ public class SubjectNotFoundException extends WebApplicationException {
         .entity("This subject ["+subjectName+"] does not exist.")
         .type(MediaType.TEXT_PLAIN).build());
     }
+    public SubjectNotFoundException(Long id) {
+        super(Response.status(Response.Status.NOT_FOUND)
+                .entity("This subject ["+id+"] does not exist.")
+                .type(MediaType.TEXT_PLAIN).build());
+    }
 }

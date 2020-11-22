@@ -31,9 +31,20 @@ public class SubjectRest {
         return Response.ok(subject).build();
     }
 
+    @Path("{id}")
+    @GET
+    public Response getSubjectById(@PathParam("id") Long id){
+        Subject foundSubject = subjectService.findSubjectById(id);
+        if (foundSubject != null){
+            return Response.ok(foundSubject).build();
+        }else {
+            throw new SubjectNotFoundException(id);
+        }
+    }
+
     @Path("{subjectName}")
     @GET
-    public Response getSubject(@PathParam("subjectName") String subjectName){
+    public Response getSubjectbyName(@PathParam("subjectName") String subjectName){
         Subject foundSubject = subjectService.findSubjectBySubjectName(subjectName);
         if (foundSubject != null){
             return Response.ok(foundSubject).build();
@@ -44,13 +55,26 @@ public class SubjectRest {
 
     @Path("{subjectName}")
     @DELETE
-    public Response deleteSubject(@PathParam("subjectName") String subjectName){
+    public Response deleteSubjectByName(@PathParam("subjectName") String subjectName){
         Subject foundSubject = subjectService.findSubjectBySubjectName(subjectName);
         if (foundSubject != null){
             subjectService.deleteSubject(subjectName);
             return Response.ok().entity("Subject " + subjectName + " was successfully deleted.").build();
         }else {
             throw new SubjectNotFoundException(subjectName);
+        }
+    }
+
+    @Path("{id}")
+    @Produces(MediaType.TEXT_PLAIN)
+    @DELETE
+    public Response deleteSubjectById(@PathParam("id") Long id){
+        Subject foundSubject = subjectService.findSubjectById(id);
+        if (foundSubject != null){
+            subjectService.deleteSubjectById(id);
+            return Response.ok().entity("Subject " + id + " was successfully deleted.").build();
+        }else {
+            throw new SubjectNotFoundException(id);
         }
     }
 

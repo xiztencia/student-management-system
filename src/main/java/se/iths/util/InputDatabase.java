@@ -1,21 +1,25 @@
-package se.iths.data;
+package se.iths.util;
 
 import se.iths.entity.Student;
 
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class StudentDatabase {
+@Singleton
+@Startup
+public class InputDatabase {
 
-    List<Student> studentList = new ArrayList<>();
+    @PersistenceContext
+    EntityManager entityManager;
 
-    @Produces
-    List<Student> getStudentList(){
-        studentList = students();
-        return studentList;
-    }
+
+
 
     private List<Student> students() {
         var studentOne = new Student("Elena","Ten","elena@iths.se","0700-000 007");
