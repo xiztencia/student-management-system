@@ -4,6 +4,7 @@ import se.iths.entity.Student;
 import se.iths.service.StudentService;
 
 import javax.inject.Inject;
+import javax.json.stream.JsonParsingException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -12,7 +13,6 @@ import java.util.List;
 @Path("student")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
 public class StudentRest {
 
     @Inject
@@ -21,15 +21,23 @@ public class StudentRest {
     @Path("create")
     @POST
     public Response createStudent(Student student) {
-        studentService.createStudent(student);
-        return Response.ok(student).build();
+        try {
+            studentService.createStudent(student);
+            return Response.ok(student).build();
+        } catch (JsonParsingException j) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
     @Path("update")
     @PUT
     public Response updateStudent(Student student) {
-        studentService.updateStudent(student);
-        return Response.ok(student).build();
+        try{
+            studentService.updateStudent(student);
+            return Response.ok(student).build();
+        } catch (Exception e){
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
     @Path("{lastName}")

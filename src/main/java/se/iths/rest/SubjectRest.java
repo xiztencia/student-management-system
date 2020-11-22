@@ -17,7 +17,7 @@ public class SubjectRest {
     @Inject
     SubjectService subjectService;
 
-    @Path("new")
+    @Path("create")
     @POST
     public Response creatSubject(Subject subject){
         subjectService.createSubject(subject);

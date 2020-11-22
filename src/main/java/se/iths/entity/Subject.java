@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 public class Subject {
-    public Subject(@NotEmpty String subjectName){
+    public Subject(@NotEmpty String subjectName) {
         this.subjectName = subjectName;
     }
 
@@ -22,18 +22,19 @@ public class Subject {
     @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacher;
 
-    public void setTeacher(Teacher teacher){
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
     @ManyToMany(mappedBy = "subjects", cascade = CascadeType.PERSIST)
     private Set<Student> students = new HashSet<>();
+
     @JsonbTransient
-    public Set<Student> getStudents(){
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public Subject(){
+    public Subject() {
     }
 
     public Long getId() {

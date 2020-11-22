@@ -33,12 +33,12 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
-    public void addSubject(Subject subject){
+    public void addSubject(Subject subject) {
         subjects.add(subject);
         subject.setTeacher(this);
     }
 
-    public void removeSubject(Subject subject){
+    public void removeSubject(Subject subject) {
         subjects.remove(subject);
         subject.setTeacher(null);
     }
@@ -46,9 +46,10 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Set<Subject> getSubjects(){
+    public Set<Subject> getSubjects() {
         return subjects;
     }
+
     public Long getId() {
         return id;
     }
@@ -88,6 +89,5 @@ public class Teacher {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 }
 

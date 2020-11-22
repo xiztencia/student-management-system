@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 public class Student {
-    public Student(@NotEmpty(message = "Required") String lastName, @NotEmpty(message = "Required") String firstName, @NotEmpty(message = "Required")@Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com") String email, @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "0700 000000") String phoneNumber){
+    public Student(@NotEmpty(message = "Required") String lastName, @NotEmpty(message = "Required") String firstName, @NotEmpty(message = "Required") @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Exemple@email.com") String email, @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", message = "0700 000000") String phoneNumber) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
@@ -33,15 +33,17 @@ public class Student {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
-    public void addSubject(Subject subject){
+    public void addSubject(Subject subject) {
         subjects.add(subject);
         subject.getStudents().add(this);
     }
-    public void removeSubject(Subject subject){
+
+    public void removeSubject(Subject subject) {
         subjects.remove(subject);
         subject.getStudents().remove(this);
     }
-    public Student(){
+
+    public Student() {
 
     }
 
