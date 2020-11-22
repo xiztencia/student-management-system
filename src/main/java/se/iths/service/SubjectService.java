@@ -34,6 +34,6 @@ public class SubjectService {
     }
 
     public List<Subject> getAllSubjects() {
-        return entityManager.createQuery("SELECT i FROM Subject i", Subject.class).getResultList();
+        return entityManager.createQuery("SELECT su FROM Subject su", Subject.class).getResultList();
     }
 }

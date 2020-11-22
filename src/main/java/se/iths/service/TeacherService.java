@@ -17,7 +17,7 @@ public class TeacherService {
     public Set<Student> getSpecificStudentsForSubject(String teacherName, String subjectName) {
 
         Subject subject = (Subject) entityManager
-        .createQuery("SELECT DISTINCT i FROM Subject i INNER JOIN FETCH i.teacher b INNER JOIN FETCH i.students u WHERE b.firstName = :teacherName AND i.subjectName = :subjectName")
+        .createQuery("SELECT DISTINCT su FROM Subject su INNER JOIN FETCH su.teacher t INNER JOIN FETCH su.students st WHERE t.firstName = :teacherName AND su.subjectName = :subjectName")
         .setParameter("teacherName", teacherName).setParameter("subjectName", subjectName).getSingleResult();
 
         Set<Student> studentResult = subject.getStudents();
