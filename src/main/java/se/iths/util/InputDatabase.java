@@ -10,30 +10,28 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 @Singleton
 @Startup
 public class InputDatabase {
-
     @PersistenceContext
     EntityManager entityManager;
 
     @PostConstruct
     public void inputData(){
-        var teacherOne = new Teacher("Pontus","Pontare","pontus@iths.se","0700-000 001");
-        var teacherTwo = new Teacher("Anders","Andersson","anders@iths.se","0700-000 002");
-        var teacherThree = new Teacher("Johanna","Johanesson","johanna@iths.se","0700-000 003");
+        Teacher teacherOne = new Teacher("Pontus","Pontare","pontus@iths.se","0700-000 001");
+        Teacher teacherTwo = new Teacher("Anders","Andersson","anders@iths.se","0700-000 002");
+        Teacher teacherThree = new Teacher("Johanna","Johanesson","johanna@iths.se","0700-000 003");
 
-        var studentOne = new Student("Guy","One","one@iths.se","0700-000 010");
-        var studentTwo = new Student("Guy","Two","two@iths.se","0700-000 020");
-        var studentThree = new Student("Guy","Three","three@iths.se","0700-000 030");
-        var studentFour = new Student("Guy","Four","four@iths.se","0700-000 040");
-        var studentFive = new Student("Guy","Five","five@iths.se","0700-000 050");
+        Student studentOne = new Student("One","Guy","one@iths.se","0700-000 010");
+        Student studentTwo = new Student("Two","Guy","two@iths.se","0700-000 020");
+        Student studentThree = new Student("Three","Guy","three@iths.se","0700-000 030");
+        Student studentFour = new Student("Four","Guy","four@iths.se","0700-000 040");
+        Student studentFive = new Student("Five","Guy","five@iths.se","0700-000 050");
 
-        var subjectOne = new Subject("English");
-        var subjectTwo = new Subject("French");
-        var subjectThree = new Subject("Spanish");
-        var subjectFour = new Subject("German");
+        Subject subjectOne = new Subject("English");
+        Subject subjectTwo = new Subject("French");
+        Subject subjectThree = new Subject("Spanish");
+        Subject subjectFour = new Subject("German");
 
         teacherOne.addSubject(subjectOne);
         teacherOne.addSubject(subjectFour);

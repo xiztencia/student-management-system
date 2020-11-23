@@ -43,17 +43,6 @@ public class SubjectRest {
     }
 
     @Path("{subjectName}")
-    @GET
-    public Response getSubjectbyName(@PathParam("subjectName") String subjectName){
-        Subject foundSubject = subjectService.findSubjectBySubjectName(subjectName);
-        if (foundSubject != null){
-            return Response.ok(foundSubject).build();
-        }else {
-            throw new SubjectNotFoundException(subjectName);
-        }
-    }
-
-    @Path("{subjectName}")
     @DELETE
     public Response deleteSubjectByName(@PathParam("subjectName") String subjectName){
         Subject foundSubject = subjectService.findSubjectBySubjectName(subjectName);
