@@ -1,5 +1,6 @@
 Complex JAVA course
 
+
 Lab 2 for ITHS Java-19
 
 JAVA EE / JPA - Labb
@@ -16,6 +17,7 @@ List of instructions for the Lab:
 
 ● Samma lärare ska kunna ha ett annat ämne och ett antal (andra) elever
 
+<This lab I was fixing by myself with a help of the "Loppis"-project. I got a problem with a deployment with was caused by H2 ínstallation, that I got adjusted via Payaras admin environment.> 
 
 End points:
 
